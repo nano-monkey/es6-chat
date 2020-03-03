@@ -1,10 +1,10 @@
 import request from 'request';
 import { expect } from "chai";
 
-describe("localhost connection test", () => {
-    it('Main page content', function(done) {
-        request('http://localhost:3000' , function(error, response, body) {
-            expect(body).to.equal('Hello World');
+describe("Server integration tests", () => {
+    it('localhost:3000 should return a status code of 200', (done) =>  {
+        request('http://localhost:3000' , (error, response, body) => {
+            expect(response.statusCode).to.equal(200);
             done();
         });
     });
