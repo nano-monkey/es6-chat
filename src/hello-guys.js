@@ -1,3 +1,5 @@
+'use strict';
+
 const sayHello = _ => "Hello guys!";
 console.log(sayHello());
 
