@@ -7,6 +7,6 @@ describe("sayHello test", () => {
 
             const str = sayHello();
             expect(str).to.equal("Hello guys!");
-        })
-    })
+        });
+    });
 });
