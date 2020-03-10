@@ -10,18 +10,17 @@ const io = SocketIO(http);
 http.listen(3000, () => console.log('listening on *:3000'));
 
 app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/index.html`);
+	res.sendFile(`${__dirname}/index.html`);
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+	socket.emit('client-connected', 'a user connected');
+	// when we get the message from the client, we send it back to display on screen
+	socket.on('chat message', (msg) => {
+		console.log(`message: ${msg}`);
+		io.emit('chat message', msg);
+	});
 
-    // when we get the message from the client, we send it back to display on screen
-    socket.on('chat message', (msg) => {
-        console.log(`message: ${msg}`);
-        io.emit('chat message', msg);
-    });
-
-    socket.on('disconnect', () => console.log('user disconnected'));
+	socket.on('disconnect', () => console.log('user disconnected'));
 });
 
