@@ -1,6 +1,7 @@
 'use strict';
 
 import express from 'express';
+import Chat from './Chat'
 import {createServer} from 'http';
 import SocketIO from 'socket.io';
 const app = express();
@@ -15,11 +16,14 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
 	socket.emit('client-connected', 'a user connected');
+
+	Chat.init(socket);
+
 	// when we get the message from the client, we send it back to display on screen
-	socket.on('chat message', (msg) => {
-		console.log(`message: ${msg}`);
-		io.emit('chat message', msg);
-	});
+	// socket.on('chat message', (msg) => {
+	// 	console.log(`message: ${msg}`);
+	// 	io.emit('chat message', msg);
+	// });
 
 	socket.on('disconnect', () => console.log('user disconnected'));
 });
