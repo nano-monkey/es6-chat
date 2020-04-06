@@ -1,8 +1,31 @@
 'use strict';
 
-let init = (socket) => {
-	console.log(socket.id);
-	return socket.id;
+/**
+ * PRIVATE
+ */
+let chatServer;
+
+function chatMessage(msg){
+	chatServer.emit('chat message', msg);
 }
 
-export default {init};
+/**
+ * PUBLIC
+ */
+
+/**
+ * Called by index.js to initialize the Chat application.
+ *
+ * @param socket The socket object for the connected client.
+ * @param io The socket server
+ */
+
+function init(socket, io){
+
+	chatServer = io;
+
+	socket.on('chat message', chatMessage);
+
+}
+
+export {init};
