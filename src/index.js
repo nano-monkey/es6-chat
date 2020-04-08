@@ -17,8 +17,13 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
 	socket.emit('client-connected', 'a user connected');
 
+	io.sockets.emit('broadcast',{ description: 'new user connected!'});
+
 	init(socket, io);
 
-	socket.on('disconnect', () => console.log('user disconnected'));
+	socket.on('disconnect', () => {
+		console.log('user disconnected');
+		io.sockets.emit('broadcast',{ description: 'user disconnected!'});
+	});
 });
 

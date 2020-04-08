@@ -31,6 +31,12 @@
                 console.log('message received outputting chat');
                 $('#messages').append($('<li>').text(msg));
             });
+
+            // receive the user connected/disconnected broadcast from the server
+            socket.on('broadcast',function(data) {
+                $('#messages').append($('<li>').text(data.description));
+            });
+
         });
     </script>
     <style>
