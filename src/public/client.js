@@ -22,4 +22,11 @@ $(function () {
 		$('#messages').append($('<li>').text(data.description));
 	});
 
+	// generate a username for now from the socket id
+	socket.on('client-connected', function(msg){
+		let name = `${socket.id}_user`;
+		socket.emit('join', name);
+	});
+
+
 });
