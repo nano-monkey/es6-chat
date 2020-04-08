@@ -3,11 +3,9 @@ $(function () {
 
 	// submit chat message to server
 	$('form').submit(function(e){
-		e.preventDefault(); // prevents page reloading
-		// example of emitting an event from the public
+		e.preventDefault();
 		socket.emit('chat message', $('#m').val());
 		$('#m').val('');
-
 		return false;
 	});
 
