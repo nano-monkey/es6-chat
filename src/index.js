@@ -10,8 +10,10 @@ const io = SocketIO(http);
 
 http.listen(3000, () => console.log('listening on *:3000'));
 
+// Set up the public directory and serve index.html
+app.use(express.static('src/public'));
 app.get('/', (req, res) => {
-	res.sendFile(`${__dirname}/index.html`);
+	res.sendFile(`${__dirname}/public/index.html`);
 });
 
 io.on('connection', (socket) => {

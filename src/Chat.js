@@ -16,7 +16,7 @@ function chatMessage(msg){
 /**
  * Called by index.js to initialize the Chat application.
  *
- * @param socket The socket object for the connected client.
+ * @param socket The socket object for the connected public.
  * @param io The socket server
  */
 
