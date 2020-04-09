@@ -12,12 +12,12 @@ $(function () {
 	// receive chat message from server and display it
 	socket.on('chat message', function(msg){
 		console.log('message received outputting chat');
-		$('#messages').append($('<li>').text(msg));
+		$('#chat-messages').append($('<li>').text(msg));
 	});
 
 	// receive the user connected/disconnected broadcast from the server
 	socket.on('broadcast',function(data) {
-		$('#messages').append($('<li>').text(data.description));
+		$('#chat-messages').append($('<li>').text(data.description));
 	});
 
 	// generate a username for now from the socket id
