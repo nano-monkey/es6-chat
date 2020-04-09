@@ -18,13 +18,21 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+
+	console.log('user connected');
+	// this is only used by the integration test!
 	socket.emit('client-connected', 'a user connected');
 
+	// this is sent to all clients
 	io.sockets.emit('broadcast',{ description: 'new user connected!'});
 
 	socket.on('join', (name) => {
 		people[socket.id] = name;
+
+		// this is sent to the new user only
 		socket.emit('update', 'You have connected to the chat server');
+
+		// this is sent to all clients to let them  know someone else has joined
 		io.sockets.emit('update', `${name} has joined the server`)
 	});
 
