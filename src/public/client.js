@@ -26,5 +26,15 @@ $(function () {
 		socket.emit('join', name);
 	});
 
+	// output welcome message to a new user when they join
+	socket.on('welcome-user', function(data){
+		$('#system-updates').append($('<li>').text(data));
+	});
+
+	// inform other users when a new user joins
+	socket.on('update', function(data){
+		$('#system-updates').append($('<li>').text(data.description));
+	});
+
 
 });

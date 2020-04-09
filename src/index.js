@@ -30,10 +30,10 @@ io.on('connection', (socket) => {
 		people[socket.id] = name;
 
 		// this is sent to the new user only
-		socket.emit('update', 'You have connected to the chat server');
+		socket.emit('welcome-user', `Hi ${name}! You have connected to the chat server`);
 
-		// this is sent to all clients to let them  know someone else has joined
-		io.sockets.emit('update', `${name} has joined the server`)
+		// this is sent to all the other connected clients to let them  know someone else has joined
+		socket.broadcast.emit('update', { description: `${name} has joined the server`});
 	});
 
 	init(socket, io);
