@@ -7,7 +7,7 @@ import SocketIO from 'socket.io';
 const app = express();
 const http = createServer(app);
 const io = SocketIO(http);
-const people = {};
+
 
 http.listen(3000, () => console.log('listening on *:3000'));
 
@@ -18,27 +18,15 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-
+	// logging
 	console.log('user connected');
-	// this is only used by the integration test!
 	socket.emit('client-connected', 'a user connected');
-
-	// this is sent to all clients
 	io.sockets.emit('broadcast',{ description: 'new user connected!'});
-
-	socket.on('join', (name) => {
-		people[socket.id] = name;
-
-		// this is sent to the new user only
-		socket.emit('welcome-user', `Hi ${name}! You have connected to the chat server`);
-
-		// this is sent to all the other connected clients to let them  know someone else has joined
-		socket.broadcast.emit('update', { description: `${name} has joined the server`});
-	});
 
 	init(socket, io);
 
 	socket.on('disconnect', () => {
+		// logging
 		console.log('user disconnected');
 		io.sockets.emit('broadcast',{ description: 'user disconnected!'});
 	});
