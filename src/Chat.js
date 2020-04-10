@@ -11,10 +11,8 @@ function chatMessage(msg){
 }
 
 function userJoinedChat(name) {
-	
 	chatClient.emit('update', `Hi ${name}! You have connected to the chat server`);
 	chatClient.broadcast.emit('update', `${name} has joined the server`);
-
 }
 
 /**
