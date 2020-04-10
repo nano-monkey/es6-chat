@@ -6,10 +6,18 @@ $(function () {
 	 ****************************************************************************************************************/
 
 	// submit chat message to server
-	$('form').submit(function(e){
+	$('#chat').submit(function(e){
 		e.preventDefault();
 		socket.emit('chat message', $('#m').val());
 		$('#m').val('');
+		return false;
+	});
+
+	// capture username
+	$('#join').submit(function(e){
+		e.preventDefault();
+		socket.emit('join', $('#name').val());
+		$('#name').val('');
 		return false;
 	});
 
@@ -28,20 +36,9 @@ $(function () {
 		$('#chat-messages').append($('<li>').text(data.description));
 	});
 
-	// generate a username for now from the socket id
-	socket.on('client-connected', function(msg){
-		let name = `${socket.id}_user`;
-		socket.emit('join', name);
-	});
-
-	// output welcome message to a new user when they join
-	socket.on('welcome-user', function(data){
-		$('#system-updates').append($('<li>').text(data));
-	});
-
-	// inform other users when a new user joins
+	// output messages when a user joins the chat
 	socket.on('update', function(data){
-		$('#system-updates').append($('<li>').text(data.description));
+		$('#system-updates').append($('<li>').text(data));
 	});
 
 

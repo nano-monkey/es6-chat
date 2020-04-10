@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
 	io.sockets.emit('broadcast',{ description: 'new user connected!'});
 
 	init(socket, io);
-
+	
 	socket.on('disconnect', () => {
 		// logging
 		console.log('user disconnected');
