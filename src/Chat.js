@@ -11,13 +11,9 @@ function chatMessage(msg){
 }
 
 function userJoinedChat(name) {
-
-	// this is sent to the new user only
+	
 	chatClient.emit('update', `Hi ${name}! You have connected to the chat server`);
-
-	// this is sent to all connected clients to let them  know someone else has joined - EXCEPT the current client
-	// who's just joined
-	chatServer.sockets.emit('update', `${name} has joined the server`);
+	chatClient.broadcast.emit('update', `${name} has joined the server`);
 
 }
 
