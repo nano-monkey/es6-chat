@@ -1,6 +1,6 @@
 # es6-chat
 
-This is a very simple application I set up that will grow over time, it's to apply node and ES6 concepts I've learned.
+This is a very simple application based on the example in this post: https://socket.io/get-started/chat/. I've set up the socket.io chat app and I'm adding the suggested features in the Homework section at the end of the post.
 
 
 ## Install
@@ -8,7 +8,8 @@ This is a very simple application I set up that will grow over time, it's to app
 
 ## Usage
 `npm start`  
-http://localhost:3000/
+
+View the app up and running at: http://localhost:3000/
 
 ## Tests
 `npm test`
