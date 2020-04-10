@@ -2,6 +2,8 @@
 
 This is a very simple application based on the example in this post: https://socket.io/get-started/chat/. I've set up the socket.io chat app and I'm adding the suggested features in the Homework section at the end of the post.
 
+## Prerequisites
+node 12.16.0
 
 ## Install
 `npm install`
